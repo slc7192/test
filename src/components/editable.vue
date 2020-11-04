@@ -267,6 +267,7 @@
                         }
                     })
                 }else{
+                    console.log(555)
                     slection.forEach((item)=>{
                         this.selectedIds.add(item.id);
                     })
