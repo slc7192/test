@@ -1,16 +1,17 @@
 <template>
   <div id="app">
-    <v-editable />
+    <v-xinhua />
     <!-- <router-view></router-view> -->
   </div>
    
 </template>
 
 <script>
-    import  editable from './components/editable.vue'
+    // import  editable from './components/editable.vue'
+    import  xinhua from './components/xinhua.vue'
     export default {
         components:{
-            'v-editable' : editable
+            'v-xinhua' : xinhua
         }
     }
 </script>

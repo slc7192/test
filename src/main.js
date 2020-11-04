@@ -5,12 +5,14 @@ import router from "./router";
 import store from "./store";
 // import { Button, Table, Modal, Form, FormItem, Input, Message} from 'iview'
 import 'iview/dist/styles/iview.css'
+import { Icon } from 'mand-mobile'
+import 'mand-mobile/lib/mand-mobile.css'
 
 
 Vue.config.productionTip = false;
 
 Vue.use(iView);
-
+Vue.component(Icon.name, Icon)
 // Vue.component('Button', Button);
 // Vue.component('Table', Table);
 // Vue.component('Modal', Modal);

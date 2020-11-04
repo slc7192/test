@@ -1,13 +1,21 @@
 <template>
   <div id="app">
     <Button type="info" @click="add" class="butrit">新增</Button>
+
     <Table border ref="selection" :columns="columns" :data="data6" class="martop"
         @on-select="handleSelect"
         @on-select-cancel="handleCancel"
         @on-select-all="handleSelectAll"
         @on-select-all-cancel="handleSelectAll"
-        v-if="pageData.length>0"></Table>
+        v-if="pageData.length>0">
+    </Table>
+
+    <Button type="primary" size="large" @click="exportData(1)" v-if="data6">
+        <Icon type="ios-download-outline"></Icon> 导出数据
+    </Button>
+
     <Page :total="total" size="small" :page-size="pageNum" :current="pagceIndex" show-total @on-change="change" class="pag" />
+
     <Modal v-model="modal1" title="修改信息"  @on-ok="ok"  @on-cancel="cancel">
         <Form :model="Fromitem" :label-width="100" class="formodal">
             <FormItem label="姓名:">
@@ -35,6 +43,7 @@
                 pagceIndex:1,//默认第一页
                 selectedIds: new Set(),//选中的合并项的id
                 selectedSum: 0, //选中的总数量
+                csvdata:[],//选中的所有数据
                 columns: [
                      {
                         type: 'selection',
@@ -232,17 +241,25 @@
 
             //选择某一行
             handleSelect(sleection,row){
-                 this.selectedIds.add(row.id)
-                 this.selectedSum ++;
+                this.selectedIds.add(row.id)
+                this.selectedSum ++;
+                this.csvdata.push(row);
             },
 
             //取消选择某一行
             handleCancel(sleection,row){
                 this.selectedIds.delete(row.id);
                 this.selectedSum --;
+                if(this.csvdata.length>0){
+                    for(var i =0; i<this.csvdata.length; i++){
+                        if(this.csvdata[i].id===row.id){
+                            this.csvdata.splice(i,1);
+                        }
+                    }
+                }
             },
 
-            //改变当前页的行的选中状态
+            //换页回显选中的状态
             setChecked () {
                 // 找到绑定的table的ref对应的dom，找到table的objData对象，objData保存的是当前页的数据
                 let objData = this.$refs.selection.objData
@@ -264,15 +281,26 @@
                     data.forEach((item)=>{
                         if(this.selectedIds.has(item.id)){
                             this.selectedIds.delete(item.id);
+                            
                         }
                     })
                 }else{
-                    console.log(555)
                     slection.forEach((item)=>{
                         this.selectedIds.add(item.id);
+                        this.csvdata.push(item);
+                        console.log(this.csvdata)
                     })
                 }
                  this.selectedSum = this.total;
+            },
+
+            //导出数据
+            exportData(type){
+                if(type===1){
+                    this.$refs.selection.exportCsv({
+                        filename:`table.csv`
+                    });
+                }
             }
 
         }
@@ -288,6 +316,7 @@
   }
   .martop{
       margin-top: 20px;
+      margin-bottom: 20px;
   }
   .pag{
       text-align: center;
