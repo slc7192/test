@@ -116,6 +116,7 @@
 </template>
 
 <script>
+    
     export default {
         data () {
             return {
@@ -209,19 +210,20 @@
     }
 </script>
 
-<style scoped lang="scss">
+<style lang="scss" scoped>
     /* body{ background-color:#f5f6f8} */
+    
     *{
        margin: 0;
        padding: 0;
        box-sizing: border-box;
     }
-
+    
     html {
 	    font-size: 10vw;
     }
     @function pxTorem($px) {
-        $item: 37.5px;
+        $item: 10vw;
         @return $px/$item+rem;
     }
     
@@ -234,7 +236,8 @@
     /* 头部 */
     .top{
         width: 100%;
-        height: pxTorem(250PX);
+        height: 16rem;
+        // background-color: $black;
     }
     .top img{
         width: 100%;
