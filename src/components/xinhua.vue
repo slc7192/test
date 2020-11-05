@@ -210,7 +210,7 @@
     }
 </script>
 
-<style lang="scss" scoped>
+<style scoped >
     /* body{ background-color:#f5f6f8} */
     
     *{
@@ -219,14 +219,14 @@
        box-sizing: border-box;
     }
     
-    html {
+    /* html {
 	    font-size: 10vw;
-    }
-    @function pxTorem($px) {
+    } */
+    /* @function pxTorem($px) {
         $item: 10vw;
         @return $px/$item+rem;
     }
-    
+     */
     #app{
         background-color:#f2f3f4
     }
@@ -237,7 +237,7 @@
     .top{
         width: 100%;
         height: 16rem;
-        // background-color: $black;
+        /* // color: $black; */
     }
     .top img{
         width: 100%;
