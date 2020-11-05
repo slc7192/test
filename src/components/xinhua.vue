@@ -209,15 +209,22 @@
     }
 </script>
 
-<style scoped>
+<style scoped lang="scss">
     /* body{ background-color:#f5f6f8} */
     *{
        margin: 0;
        padding: 0;
        box-sizing: border-box;
-       
-       
     }
+
+    html {
+	    font-size: 10vw;
+    }
+    @function pxTorem($px) {
+        $item: 37.5px;
+        @return $px/$item+rem;
+    }
+    
     #app{
         background-color:#f2f3f4
     }
@@ -227,7 +234,7 @@
     /* 头部 */
     .top{
         width: 100%;
-        height: 16rem;
+        height: pxTorem(250PX);
     }
     .top img{
         width: 100%;
