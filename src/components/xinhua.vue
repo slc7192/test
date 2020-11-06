@@ -210,7 +210,7 @@
     }
 </script>
 
-<style scoped >
+<style scoped  lang="scss">
     /* body{ background-color:#f5f6f8} */
     
     *{
@@ -237,7 +237,7 @@
     .top{
         width: 100%;
         height: 16rem;
-        /* // color: $black; */
+        color: $black;
     }
     .top img{
         width: 100%;
